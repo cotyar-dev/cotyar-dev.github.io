@@ -1,6 +1,5 @@
 +++
 date = '2025-01-01T19:34:49-08:00'
-draft = true
 title = 'Building on top of Cloudflare Workers'
 featured_image = '/images/gohugo-default-sample-hero-image.jpg'
 omit_header_text = true
