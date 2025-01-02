@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cotyar Dev</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Cotyar Dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 2025 19:34:49 -0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building on top of Cloudflare Workers</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Wed, 01 Jan 2025 19:34:49 -0800</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;I have recently been building a project using Cloudflare&#xA;&lt;a href=&#34;https://developers.cloudflare.com/workers/&#34;&gt;Workers&lt;/a&gt; as the underlying&#xA;infrastructure and platform. I am definitely impressed by a lot&#xA;that is offered by Cloudflare Workers in this regard. Here are their offerings&#xA;I am utilizing as I build this current project.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developers.cloudflare.com/queues/&#34;&gt;Queues&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developers.cloudflare.com/durable-objects/&#34;&gt;Durable Objects&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developers.cloudflare.com/workers/wrangler/&#34;&gt;Wrangler&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Cloudflare&amp;rsquo;s documentation is extensive but I have noticed that some obvious&#xA;thing such as TOML configuration syntax of&#xA;&lt;a href=&#34;https://developers.cloudflare.com/workers/wrangler/configuration/&#34;&gt;wrangler.toml&lt;/a&gt;&#xA;is easy to trip on. At other times, some thing that is only discoverable through experience&#xA;and not laid out in the docs shows up.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

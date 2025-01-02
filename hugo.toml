@@ -1,0 +1,12 @@
+baseURL = 'https://cotyar-dev.github.io/'
+languageCode = 'en-us'
+title = 'Cotyar Dev'
+theme = 'ananke'
+enableEmoji = true
+
+[deployment]
+
+[[deployment.targets]]
+name = "production"
+
+URL = "<FILL ME IN>"

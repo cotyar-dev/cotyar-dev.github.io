@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Building on top of Cloudflare Workers | Cotyar Dev</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Introduction
+I have recently been building a project using Cloudflare
+Workers as the underlying
+infrastructure and platform. I am definitely impressed by a lot
+that is offered by Cloudflare Workers in this regard. Here are their offerings
+I am utilizing as I build this current project.
+
+Queues
+Durable Objects
+Wrangler
+
+Cloudflare&rsquo;s documentation is extensive but I have noticed that some obvious
+thing such as TOML configuration syntax of
+wrangler.toml
+is easy to trip on. At other times, some thing that is only discoverable through experience
+and not laid out in the docs shows up.">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
+  <meta property="og:site_name" content="Cotyar Dev">
+  <meta property="og:title" content="Building on top of Cloudflare Workers">
+  <meta property="og:description" content="Introduction I have recently been building a project using Cloudflare Workers as the underlying infrastructure and platform. I am definitely impressed by a lot that is offered by Cloudflare Workers in this regard. Here are their offerings I am utilizing as I build this current project.
+Queues Durable Objects Wrangler Cloudflare’s documentation is extensive but I have noticed that some obvious thing such as TOML configuration syntax of wrangler.toml is easy to trip on. At other times, some thing that is only discoverable through experience and not laid out in the docs shows up.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-01T19:34:49-08:00">
+    <meta property="article:modified_time" content="2025-01-01T19:34:49-08:00">
+
+  <meta itemprop="name" content="Building on top of Cloudflare Workers">
+  <meta itemprop="description" content="Introduction I have recently been building a project using Cloudflare Workers as the underlying infrastructure and platform. I am definitely impressed by a lot that is offered by Cloudflare Workers in this regard. Here are their offerings I am utilizing as I build this current project.
+Queues Durable Objects Wrangler Cloudflare’s documentation is extensive but I have noticed that some obvious thing such as TOML configuration syntax of wrangler.toml is easy to trip on. At other times, some thing that is only discoverable through experience and not laid out in the docs shows up.">
+  <meta itemprop="datePublished" content="2025-01-01T19:34:49-08:00">
+  <meta itemprop="dateModified" content="2025-01-01T19:34:49-08:00">
+  <meta itemprop="wordCount" content="736">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building on top of Cloudflare Workers">
+  <meta name="twitter:description" content="Introduction I have recently been building a project using Cloudflare Workers as the underlying infrastructure and platform. I am definitely impressed by a lot that is offered by Cloudflare Workers in this regard. Here are their offerings I am utilizing as I build this current project.
+Queues Durable Objects Wrangler Cloudflare’s documentation is extensive but I have noticed that some obvious thing such as TOML configuration syntax of wrangler.toml is easy to trip on. At other times, some thing that is only discoverable through experience and not laid out in the docs shows up.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/gohugo-default-sample-hero-image.jpg');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Cotyar Dev
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Building on top of Cloudflare Workers</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-01-01T19:34:49-08:00">January 1, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="introduction">Introduction</h2>
+<p>I have recently been building a project using Cloudflare
+<a href="https://developers.cloudflare.com/workers/">Workers</a> as the underlying
+infrastructure and platform. I am definitely impressed by a lot
+that is offered by Cloudflare Workers in this regard. Here are their offerings
+I am utilizing as I build this current project.</p>
+<ol>
+<li><a href="https://developers.cloudflare.com/queues/">Queues</a></li>
+<li><a href="https://developers.cloudflare.com/durable-objects/">Durable Objects</a></li>
+<li><a href="https://developers.cloudflare.com/workers/wrangler/">Wrangler</a></li>
+</ol>
+<p>Cloudflare&rsquo;s documentation is extensive but I have noticed that some obvious
+thing such as TOML configuration syntax of
+<a href="https://developers.cloudflare.com/workers/wrangler/configuration/">wrangler.toml</a>
+is easy to trip on. At other times, some thing that is only discoverable through experience
+and not laid out in the docs shows up.</p>
+<p>In this blog post, and hopefully some in the future as well, I would like to cover these fine points
+so that another passer-by can get a bit of help where the various LLMs may not exhaustively
+answer one of those basic question. So without further adieu, let&rsquo;s jump into the first gotcha
+that I spent time with today.</p>
+<h3 id="wranglertoml">wrangler.toml</h3>
+<p>Wrangler is the standard CLI provided by Cloudflare for streamlining development and deployment of
+your workers. It runs <code>esbuild</code> under the hood to bundle your JavaScript/Typescript for
+their <a href="https://github.com/cloudflare/workerd">runtime</a>.</p>
+<p>Wrangler takes both JSON and TOML formats. I have been using the TOML format and so I was expecting that standard TOML will work under all circumstances, well, kind of. Let&rsquo;s see what I ran into as
+I tried to introduce <a href="https://developers.cloudflare.com/workers/wrangler/environments/">environments</a>.</p>
+<p>First, let&rsquo;s take a worker, for example, so we can apply the concept of environments to its configuration. Let&rsquo;s name it sample-worker.</p>
+<h4 id="sample-worker">sample-worker</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>/Users/cotyar-dev/cloudflare-post/sample-worker
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>|  └── index.ts
+</span></span><span style="display:flex;"><span>├── worker-configuration.d.ts
+</span></span><span style="display:flex;"><span>└── wrangler.toml
+</span></span></code></pre></div><p>And if we look at the <code>wrangler.yaml</code> for this worker, it is a producer for a queue called
+<code>messages</code> with a binding name of <code>MESSAGES</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;sample-worker&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span> = <span style="color:#e6db74">&#34;src/index.ts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">compatibility_date</span> = <span style="color:#e6db74">&#34;2024-11-06&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the following is the name of queue in production, we would like one for staging</span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">queues</span>.<span style="color:#a6e22e">producers</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">queue</span> = <span style="color:#e6db74">&#34;messages&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">binding</span> = <span style="color:#e6db74">&#34;MESSAGES&#34;</span>
+</span></span></code></pre></div><h4 id="attempt-1-at-adding-a-queue-for-staging-env">Attempt #1: at adding a queue for staging env</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>... <span style="color:#a6e22e">rest</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">TOML</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">shown</span> <span style="color:#a6e22e">above</span> ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">staging</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">vars</span> = { <span style="color:#a6e22e">ENVIRONMENT</span> = <span style="color:#e6db74">&#34;development&#34;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">workers_dev</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">queues</span>.<span style="color:#a6e22e">producers</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">queue</span> = <span style="color:#e6db74">&#34;messages-dev&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">binding</span> = <span style="color:#e6db74">&#34;MESSAGES&#34;</span>
+</span></span></code></pre></div><p>This goes on to show that keys that are immediately at the root of <code>[env.staging]</code> work fine and our
+issue has to do with nested nature of the <code>producers</code> key.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npx wrangler deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> ⛅️ wrangler 3.99.0
+</span></span><span style="display:flex;"><span>-------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>▲ <span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span> Processing producer/wrangler.toml configuration:
+</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;env.staging&#34;</span> environment configuration
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;queues&#34;</span> exists at the top level, but not on <span style="color:#e6db74">&#34;env.staging&#34;</span>.
+</span></span><span style="display:flex;"><span>        This is not what you probably want, since <span style="color:#e6db74">&#34;queues&#34;</span> is not inherited by environments.
+</span></span><span style="display:flex;"><span>        Please add <span style="color:#e6db74">&#34;queues&#34;</span> to <span style="color:#e6db74">&#34;env.staging&#34;</span>.
+</span></span></code></pre></div><p>Interesting. &#x1f914;</p>
+<h4 id="attempt-2-after-learnig-some-more-toml-and-running-it-through-the-validator">Attempt #2: after learnig some more TOML and running it through the validator</h4>
+<p>Apparently, TOML has the concept of tables and array of tables. I consulted this <a href="https://learnxinyminutes.com/toml/">primer</a>. This attempt was inspired by seeing the <code>durable_objects</code> key
+in this <a href="https://github.com/cloudflare/cloudflare-docs/pull/4720">PR</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>... <span style="color:#a6e22e">rest</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">TOML</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">shown</span> <span style="color:#a6e22e">above</span> ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">staging</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">vars</span> = { <span style="color:#a6e22e">ENVIRONMENT</span> = <span style="color:#e6db74">&#34;development&#34;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">workers_dev</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">queues</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">producers</span> = [
+</span></span><span style="display:flex;"><span>	{<span style="color:#a6e22e">queue</span> = <span style="color:#e6db74">&#34;messages-dev&#34;</span>, <span style="color:#a6e22e">binding</span> = <span style="color:#e6db74">&#34;MESSAGES&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npx wrangler deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>⛅️ wrangler 3.99.0
+</span></span><span style="display:flex;"><span>-------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>✘ <span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t redefine existing key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    producer/wrangler.toml:36:0:
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">14</span> │ <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>         ╵
+</span></span></code></pre></div><p>Uh oh, &#x1f928; - so Attempt #2 shows us, that Wrangler is making a <code>queues</code> key under the hood, which makes sense for many reasons. Under both <code>queues.producers</code> and <code>queues.consumers</code>, there are various default
+settings to be had. Perhaps Wrangler sets those up first and you can&rsquo;t be going on redefining the key.</p>
+<h4 id="attempt-3-fully-qualify-any-entry-under-the-environment-always-works">Attempt 3: fully qualify any entry under the environment (always works!)</h4>
+<p>This was inspired by running across this <a href="https://justin.poehnelt.com/posts/cloudflare-workers-wrangler-dev-staging-prod/">post</a> by Justin Poehnelt. By targeting the specific
+nested property and fully qualifying it, it turns out Wrangler is able to both
+set up the parent key and absort what we are trying to put in for the specific <code>env.staging</code>
+section.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;sample-worker&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span> = <span style="color:#e6db74">&#34;src/index.ts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">compatibility_date</span> = <span style="color:#e6db74">&#34;2024-11-06&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the following is the name of queue in production, we would like one for staging</span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">queues</span>.<span style="color:#a6e22e">producers</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">queue</span> = <span style="color:#e6db74">&#34;messages&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">binding</span> = <span style="color:#e6db74">&#34;MESSAGES&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">staging</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">vars</span> = { <span style="color:#a6e22e">ENVIRONMENT</span> = <span style="color:#e6db74">&#34;development&#34;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">workers_dev</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">staging</span>.<span style="color:#a6e22e">queues</span>.<span style="color:#a6e22e">producers</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">queue</span> = <span style="color:#e6db74">&#34;messages-dev&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">binding</span> = <span style="color:#e6db74">&#34;MESSAGES&#34;</span>
+</span></span></code></pre></div><p>And voila! &#x1f60d;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npx wrangler deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> ⛅️ wrangler 3.99.0
+</span></span><span style="display:flex;"><span>-------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Total Upload: 275.51 KiB / gzip: 57.73 KiB
+</span></span><span style="display:flex;"><span>Worker Startup Time: <span style="color:#ae81ff">20</span> ms
+</span></span><span style="display:flex;"><span>Your worker has access to the following bindings:
+</span></span><span style="display:flex;"><span>- Queues:
+</span></span><span style="display:flex;"><span>  - MESSAGES: messages-dev
+</span></span><span style="display:flex;"><span>- Vars:
+</span></span><span style="display:flex;"><span>  - ENVIRONMENT: <span style="color:#e6db74">&#34;development&#34;</span>
+</span></span></code></pre></div><p>Keep a look out for my other learning posts about Cloudflare Workers. Cheers!</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  Cotyar Dev 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
