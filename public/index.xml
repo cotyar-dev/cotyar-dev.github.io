@@ -6,8 +6,15 @@
     <description>Recent content on Cotyar Dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2025 19:34:49 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2025 23:04:58 -0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloudflare Browser Rendering in a Pub-Sub Setting</title>
+      <link>http://localhost:1313/posts/browser-rendering/</link>
+      <pubDate>Wed, 01 Jan 2025 23:04:58 -0800</pubDate>
+      <guid>http://localhost:1313/posts/browser-rendering/</guid>
+      <description>&lt;p&gt;Cloudflare Browser-Rendering is in beta and currently doesn&amp;rsquo;t charge you much&#xA;at all as long as you can work within its limits and have standard Workers billing&#xA;set up.&lt;/p&gt;&#xA;&lt;h2 id=&#34;problem-statement&#34;&gt;Problem Statement&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s imagine we want to build something like a asynchronous system&#xA;that consumes messages published on a queue via an API in a fire-and-forget&#xA;manner, where consumption entails running some puppeteer scripts&#xA;against certain websites with the data present within the messages.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Building on top of Cloudflare Workers</title>
       <link>http://localhost:1313/posts/my-first-post/</link>
