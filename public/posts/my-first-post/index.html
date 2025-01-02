@@ -64,7 +64,7 @@ Queues Durable Objects Wrangler Cloudflare’s documentation is extensive but I 
 Queues Durable Objects Wrangler Cloudflare’s documentation is extensive but I have noticed that some obvious thing such as TOML configuration syntax of wrangler.toml is easy to trip on. At other times, some thing that is only discoverable through experience and not laid out in the docs shows up.">
   <meta itemprop="datePublished" content="2025-01-01T19:34:49-08:00">
   <meta itemprop="dateModified" content="2025-01-01T19:34:49-08:00">
-  <meta itemprop="wordCount" content="736">
+  <meta itemprop="wordCount" content="739">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Building on top of Cloudflare Workers">
   <meta name="twitter:description" content="Introduction I have recently been building a project using Cloudflare Workers as the underlying infrastructure and platform. I am definitely impressed by a lot that is offered by Cloudflare Workers in this regard. Here are their offerings I am utilizing as I build this current project.
@@ -143,7 +143,7 @@ thing such as TOML configuration syntax of
 is easy to trip on. At other times, some thing that is only discoverable through experience
 and not laid out in the docs shows up.</p>
 <p>In this blog post, and hopefully some in the future as well, I would like to cover these fine points
-so that another passer-by can get a bit of help where the various LLMs may not exhaustively
+so that another passerby can get a bit of help where the various LLMs may not exhaustively
 answer one of those basic question. So without further adieu, let&rsquo;s jump into the first gotcha
 that I spent time with today.</p>
 <h3 id="wranglertoml">wrangler.toml</h3>
@@ -219,10 +219,10 @@ in this <a href="https://github.com/cloudflare/cloudflare-docs/pull/4720">PR</a>
 </span></span><span style="display:flex;"><span>         ╵
 </span></span></code></pre></div><p>Uh oh, &#x1f928; - so Attempt #2 shows us, that Wrangler is making a <code>queues</code> key under the hood, which makes sense for many reasons. Under both <code>queues.producers</code> and <code>queues.consumers</code>, there are various default
 settings to be had. Perhaps Wrangler sets those up first and you can&rsquo;t be going on redefining the key.</p>
-<h4 id="attempt-3-fully-qualify-any-entry-under-the-environment-always-works">Attempt 3: fully qualify any entry under the environment (always works!)</h4>
+<h4 id="attempt-3-fully-qualify-any-such-nested-entry-under-the-environment-always-works">Attempt 3: fully qualify any such nested entry under the environment (always works!)</h4>
 <p>This was inspired by running across this <a href="https://justin.poehnelt.com/posts/cloudflare-workers-wrangler-dev-staging-prod/">post</a> by Justin Poehnelt. By targeting the specific
-nested property and fully qualifying it, it turns out Wrangler is able to both
-set up the parent key and absort what we are trying to put in for the specific <code>env.staging</code>
+nested property and fully qualifying it, it turns out that Wrangler is able to both
+set up the parent key and absorb what we are trying to put in for the specific <code>env.staging</code>
 section.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;sample-worker&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span> = <span style="color:#e6db74">&#34;src/index.ts&#34;</span>

@@ -24,7 +24,7 @@ is easy to trip on. At other times, some thing that is only discoverable through
 and not laid out in the docs shows up.
 
 In this blog post, and hopefully some in the future as well, I would like to cover these fine points
-so that another passer-by can get a bit of help where the various LLMs may not exhaustively
+so that another passerby can get a bit of help where the various LLMs may not exhaustively
 answer one of those basic question. So without further adieu, let's jump into the first gotcha
 that I spent time with today.
 
@@ -131,11 +131,11 @@ npx wrangler deploy
 Uh oh, :raised_eyebrow: - so Attempt #2 shows us, that Wrangler is making a `queues` key under the hood, which makes sense for many reasons. Under both `queues.producers` and `queues.consumers`, there are various default
 settings to be had. Perhaps Wrangler sets those up first and you can't be going on redefining the key.
 
-#### Attempt 3: fully qualify any entry under the environment (always works!)
+#### Attempt 3: fully qualify any such nested entry under the environment (always works!)
 
 This was inspired by running across this [post](https://justin.poehnelt.com/posts/cloudflare-workers-wrangler-dev-staging-prod/) by Justin Poehnelt. By targeting the specific
-nested property and fully qualifying it, it turns out Wrangler is able to both
-set up the parent key and absort what we are trying to put in for the specific `env.staging`
+nested property and fully qualifying it, it turns out that Wrangler is able to both
+set up the parent key and absorb what we are trying to put in for the specific `env.staging`
 section.
 
 ```toml
